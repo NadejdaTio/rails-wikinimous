@@ -1,0 +1,20 @@
+<%= form_for(@article) do |f| %>
+  <%= f.label :title %>
+  <%= f.text_field :title %>
+
+  <%= f.label :content %>
+  <%= f.hidden_field :content %>
+
+  <%= f.submit %>
+<% end %>
+
+<div id="editor"><%= @article.content %></div>
+
+<script>
+  var editor = ace.edit("editor");
+  editor.getSession("editor").on('change', function(e) {
+    var new_content = editor.getValue();
+    document.getElementById("article_content").value = new_content
+  });
+
+</script>
